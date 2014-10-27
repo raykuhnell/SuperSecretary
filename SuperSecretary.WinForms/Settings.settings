@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SuperSecretary" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LastSourcePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Ray\Downloads\Test Folder</Value>
+    </Setting>
+    <Setting Name="LastDestinationPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Ray\Downloads\Test Folder</Value>
+    </Setting>
+    <Setting Name="YearFormatString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">yyyy</Value>
+    </Setting>
+    <Setting Name="MonthFormatString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MM</Value>
+    </Setting>
+    <Setting Name="LogFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Ray\Downloads\Test Folder</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
