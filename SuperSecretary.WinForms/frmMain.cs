@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using SuperSecretary;
 using SuperSecretary.Events;
+using SuperSecretary.Handlers;
 
 namespace SuperSecretary.WinForms
 {
@@ -129,6 +130,7 @@ namespace SuperSecretary.WinForms
             if (result.Success)
             {
                 clbFileTypes.Items.AddRange(result.Extensions);
+                cbProperty.Items.AddRange(HandlerManager.Instance.Handlers.Keys.ToArray());
 
                 cbProperty.Enabled = true;
                 lbProperties.Enabled = true;

@@ -121,11 +121,6 @@
             // 
             this.cbProperty.Enabled = false;
             this.cbProperty.FormattingEnabled = true;
-            this.cbProperty.Items.AddRange(new object[] {
-            "Date Taken",
-            "Date Created",
-            "Date Modified",
-            "File Extension"});
             this.cbProperty.Location = new System.Drawing.Point(12, 170);
             this.cbProperty.Name = "cbProperty";
             this.cbProperty.Size = new System.Drawing.Size(195, 21);

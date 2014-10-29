@@ -27,21 +27,11 @@ namespace SuperSecretary
 
             foreach (string prop in properties)
             {
-                string p = prop.ToLower().Replace(" ", "");
-                switch (p)
+                var hm = HandlerManager.Instance;
+                var handler = hm.GetByName(prop);
+                if (handler != null)
                 {
-                    case "datetaken":
-                        Handlers.Add(new DateTakenHandler());
-                        break;
-                    case "datemodified":
-                        Handlers.Add(new DateModifiedHandler());
-                        break;
-                    case "fileextension":
-                        Handlers.Add(new FileExtensionHandler());
-                        break;
-                    default:
-                        Handlers.Add(new DateCreatedHandler());
-                        break;
+                    Handlers.Add(handler);
                 }
             } 
         }

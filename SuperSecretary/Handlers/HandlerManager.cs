@@ -24,7 +24,15 @@ namespace SuperSecretary.Handlers
             // Register built in handlers.
             Handlers = new Dictionary<string, IHandler>();
 
-            IHandler handler = new DateCreatedHandler();
+            IHandler handler;
+
+            handler = new CameraMakerHandler();
+            Handlers.Add(handler.Name, handler);
+
+            handler = new CameraModelHandler();
+            Handlers.Add(handler.Name, handler);
+
+            handler = new DateCreatedHandler();
             Handlers.Add(handler.Name, handler);
 
             handler = new DateModifiedHandler();
@@ -34,7 +42,20 @@ namespace SuperSecretary.Handlers
             Handlers.Add(handler.Name, handler);
 
             handler = new FileExtensionHandler();
-            Handlers.Add(handler.Name, handler);
+            Handlers.Add(handler.Name, handler); 
+        }
+
+        public IHandler GetByName(string name)
+        {
+            IHandler handler = null;
+            foreach (var pair in Handlers)
+            {
+                if (pair.Value.Name == name)
+                {
+                    handler = pair.Value;
+                }
+            }
+            return handler;
         }
     }
 }

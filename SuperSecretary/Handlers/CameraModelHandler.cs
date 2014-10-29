@@ -6,15 +6,15 @@ using SuperSecretary.Utilities;
 
 namespace SuperSecretary.Handlers
 {
-    public class DateTakenHandler : IHandler
+    public class CameraModelHandler : IHandler
     {
-        private const int PROPERTY_ID = 0x9003;
+        private const int PROPERTY_ID = 0x0110;
 
         public string Name
         {
             get
             {
-                return "Date Taken";
+                return "Camera Model";
             }
         }
 
@@ -24,9 +24,7 @@ namespace SuperSecretary.Handlers
 
             try
             {
-                string date = ExifUtilities.GetProperty(fileName, ExifProperties.DateTaken);
-                var dateTaken = DateTime.ParseExact(date, "yyyy:MM:dd HH:mm:ss", null);
-                result.Value = dateTaken.ToString(options.DateFormatString);
+                result.Value = ExifUtilities.GetProperty(fileName, ExifProperties.CameraModel);
             }
             catch (Exception ex)
             {
