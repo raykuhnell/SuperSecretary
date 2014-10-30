@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace SuperSecretary.Handlers
@@ -56,6 +57,22 @@ namespace SuperSecretary.Handlers
                 }
             }
             return handler;
+        }
+
+        public void LoadAssembly(string fileName)
+        {
+            var handlerType = typeof(IHandler);
+
+            Assembly a = Assembly.LoadFile(fileName);
+
+            foreach(Type type in a.GetTypes())
+            {
+                if (!(type.IsInterface || type.IsInterface) && type.GetInterface(handlerType.FullName) != null)
+                {
+                    IHandler handler = (IHandler)Activator.CreateInstance(type);
+                    Handlers.Add(handler.Name, handler);
+                }
+            }
         }
     }
 }

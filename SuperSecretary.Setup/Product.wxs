@@ -8,13 +8,20 @@
 
 		<Feature Id="ProductFeature" Title="SuperSecretary.Setup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="PluginsFolderComponent"/>
 		</Feature>
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="SuperSecretary.Setup" />
+        <Directory Id="INSTALLFOLDER" Name="SuperSecretary.Setup">
+          <Directory Id="PLUGINSFOLDER" Name="Plugins">
+            <Component Id="PluginsFolderComponent" Guid="48151623-4248-1516-2342-481516234248">
+              <CreateFolder />
+            </Component>
+          </Directory>
+        </Directory>
 			</Directory>
 		</Directory>
 	</Fragment>

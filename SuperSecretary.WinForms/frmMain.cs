@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SuperSecretary;
 using SuperSecretary.Events;
 using SuperSecretary.Handlers;
+using System.IO;
 
 namespace SuperSecretary.WinForms
 {
@@ -14,6 +15,23 @@ namespace SuperSecretary.WinForms
             InitializeComponent();
             txtSource.Text = Settings.Default.LastSourcePath;
             txtDestination.Text = Settings.Default.LastDestinationPath;
+
+            // Load handler plugins.
+            try
+            {
+                if (Directory.Exists(Settings.Default.PluginsDirectory))
+                {
+                    var hm = HandlerManager.Instance;
+                    foreach (string file in Directory.GetFiles(Settings.Default.PluginsDirectory, "*.dll"))
+                    {
+                        hm.LoadAssembly(file);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred loading plugins.  Please check the plugins directory and restart the application.", Application.ProductName);
+            }            
         }
 
         private void btnSelectSource_Click(object sender, EventArgs e)
@@ -75,11 +93,11 @@ namespace SuperSecretary.WinForms
             }
             catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("An error occurred trying to access files.  " + ex.Message);
+                MessageBox.Show("An error occurred trying to access files.  " + ex.Message, Application.ProductName);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An unknown error occurred.  " + ex.Message);
+                MessageBox.Show("An unknown error occurred.  " + ex.Message, Application.ProductName);
             }
 
             Log.Save(Settings.Default.LogFilePath);

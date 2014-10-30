@@ -73,13 +73,25 @@ namespace SuperSecretary.WinForms {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Ray\\Downloads\\Test Folder")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Logs")]
         public string LogFilePath {
             get {
                 return ((string)(this["LogFilePath"]));
             }
             set {
                 this["LogFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Plugins")]
+        public string PluginsDirectory {
+            get {
+                return ((string)(this["PluginsDirectory"]));
+            }
+            set {
+                this["PluginsDirectory"] = value;
             }
         }
     }
