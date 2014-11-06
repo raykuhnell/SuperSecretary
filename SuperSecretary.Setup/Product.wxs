@@ -1,36 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="SuperSecretary" Language="1033" Version="1.0.0.0" Manufacturer="Razium Software" UpgradeCode="2991cd21-2829-4544-a560-666ea89b682c">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+	<Product Id="*" Name="SuperSecretary" Language="1033" Version="1.1.0.0" Manufacturer="Razium" UpgradeCode="2991cd21-2829-4544-a560-666ea89b682c">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+		<MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="ProductFeature" Title="SuperSecretary.Setup" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
-      <ComponentRef Id="PluginsFolderComponent"/>
-		</Feature>
-	</Product>
+    <PropertyRef Id="NETFRAMEWORK35"/>
+    <Condition Message="This application requires .NET Framework 3.5 or higher. Please install the .NET Framework and then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK35]]>
+    </Condition>
+    
+    <Icon Id="icon.ico" SourceFile="Resources\icon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
 
-	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
+    <WixVariable Id="WixUILicenseRtf" Value="Resources\LICENSE.rtf"/>
+    <WixVariable Id="WixUIDialogBmp" Value="Resources\Dialog.bmp"/>
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="SuperSecretary.Setup">
-          <Directory Id="PLUGINSFOLDER" Name="Plugins">
-            <Component Id="PluginsFolderComponent" Guid="48151623-4248-1516-2342-481516234248">
-              <CreateFolder />
-            </Component>
-          </Directory>
+        <Directory Id="INSTALLFOLDER" Name="SuperSecretary">
+          <Directory Id="PLUGINSDIR" Name="Plugins" />
+          <Directory Id="LOGSDIR" Name="Logs" />
         </Directory>
 			</Directory>
 		</Directory>
-	</Fragment>
+    
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="SuperSecretary.dll">
+        <File Id="SuperSecretary.dll" Source="$(var.SuperSecretary.WinForms.TargetDir)SuperSecretary.dll" />
+      </Component>
+      <Component Id="SuperSecretary.WinForms.exe"> 
+				<File Id="SuperSecretary.WinForms.exe" Source="$(var.SuperSecretary.WinForms.TargetPath)" />
+			</Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="PLUGINSDIR">
+      <Component Id="PluginsFolder" Guid="48151623-4248-1516-2342-481516234248">
+        <CreateFolder />
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="LOGSDIR">
+      <Component Id="LogsFolder" Guid="81516234-2481-5162-3424-815162342484">
+        <CreateFolder />
+      </Component>
+    </DirectoryRef>
+      
+		<Feature Id="ProductFeature" Title="SuperSecretary.Setup" Level="1">
+			<ComponentRef Id="SuperSecretary.dll" />
+      <ComponentRef Id="SuperSecretary.WinForms.exe" />
+      <ComponentRef Id="PluginsFolder"/>
+      <ComponentRef Id="LogsFolder"/>
+		</Feature>
+  
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+    </UI>
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch SuperSecretary" />
 
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			 <Component Id="ProductComponent"> 
-				 <File Source="$(var.SuperSecretary.WinForms.TargetPath)" />
-			 </Component> 
-		</ComponentGroup>
-	</Fragment>
+    <Property Id="WixShellExecTarget" Value="[#SuperSecretary.WinForms.exe]" />
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+	</Product>
 </Wix>

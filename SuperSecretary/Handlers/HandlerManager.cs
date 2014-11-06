@@ -8,13 +8,23 @@ namespace SuperSecretary.Handlers
 {
     public sealed class HandlerManager
     {
-        private static readonly Lazy<HandlerManager> _instance = new Lazy<HandlerManager>(() => new HandlerManager());
+        private static volatile HandlerManager _instance;
+        private static object syncRoot = new Object();
 
         public static HandlerManager Instance
         {
             get
             {
-                return _instance.Value;
+                if (_instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (_instance == null)
+                            _instance = new HandlerManager();
+                    }
+                }
+
+                return _instance;
             }
         }
 
