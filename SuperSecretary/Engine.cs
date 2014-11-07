@@ -88,7 +88,7 @@ namespace SuperSecretary
                     foreach (var handler in Handlers)
                     {
                         var result = handler.Do(file, ho);
-                        value += result.Value;
+                        value += @"\\" + result.Value;
 
                         if (result.Exception != null)
                         {
