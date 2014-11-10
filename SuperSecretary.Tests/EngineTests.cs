@@ -21,11 +21,11 @@ namespace SuperSecretary.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("Files\\Test.txt", "EngineTests.Scan")]
-        [DeploymentItem("Files\\Test.pdf", "EngineTests.Scan\\Subdirectory")]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ScanWithRecurseSubdirectories")]
+        [DeploymentItem("Files\\Test.pdf", "EngineTests.ScanWithRecurseSubdirectories\\Subdirectory")]
         public void ScanWithRecurseSubdirectories()
         {
-            var result = Engine.Scan("EngineTests.Scan", true);
+            var result = Engine.Scan("EngineTests.ScanWithRecurseSubdirectories", true);
             Assert.IsTrue(result.Success, "Scan was not successful.");
             Assert.AreEqual(2, result.Files.Length, "Scan did not find all files.");
             Assert.IsTrue(result.Extensions.Contains(".txt"), "Expected extensions were not found.");
@@ -68,6 +68,89 @@ namespace SuperSecretary.Tests
             Assert.IsTrue(File.Exists(DESTINATION + "\\pdf\\Test.pdf"), "File does not exist in destination.");
             Assert.IsTrue(File.Exists(DESTINATION + "\\html\\Test.html"), "File does not exist in destination.");
             Assert.IsTrue(File.Exists(DESTINATION + "\\jpg\\JPGWithEXIFData.jpg"), "File does not exist in destination.");
+        }
+
+        [TestMethod]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ProcessWithMove.In")]
+        public void ProcessWithMove()
+        {
+            const string SOURCE = "EngineTests.ProcessWithMove.In";
+            const string DESTINATION = "EngineTests.ProcessWithMove.Out";
+
+            string[] properties = new string[] { "File Extension" };
+
+            EngineOptions options = new EngineOptions()
+            {
+                RecurseSubdirectories = true,
+                SortByMonth = true,
+                Copy = false,
+                FileExtensions = new string[] { },
+                YearFormatString = "yyyy",
+                MonthFormatString = "MM"
+            };
+
+            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            engine.Process();
+
+            Assert.IsFalse(File.Exists(SOURCE + "\\txt\\Test.txt"), "File should have moved to destination.");
+
+            Assert.IsTrue(File.Exists(DESTINATION + "\\txt\\Test.txt"), "File does not exist in destination.");
+        }
+
+        [TestMethod]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ProcessWithSelectedExtensions.In")]
+        [DeploymentItem("Files\\Test.pdf", "EngineTests.ProcessWithSelectedExtensions.In")]
+        public void ProcessWithSelectedExtensions()
+        {
+            const string SOURCE = "EngineTests.ProcessWithSelectedExtensions.In";
+            const string DESTINATION = "EngineTests.ProcessWithSelectedExtensions.Out";
+
+            string[] properties = new string[] { "File Extension" };
+
+            EngineOptions options = new EngineOptions()
+            {
+                RecurseSubdirectories = true,
+                SortByMonth = true,
+                Copy = true,
+                FileExtensions = new string[] { ".txt" },
+                YearFormatString = "yyyy",
+                MonthFormatString = "MM"
+            };
+
+            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            engine.Process();
+
+            Assert.IsFalse(File.Exists(DESTINATION + "\\pdf\\Test.pdf"), "File should should not exist in destination.");
+
+            Assert.IsTrue(File.Exists(DESTINATION + "\\txt\\Test.txt"), "File does not exist in destination.");
+        }
+
+        [TestMethod]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ProcessWithRecurseSubdirectories.In")]
+        [DeploymentItem("Files\\Test.pdf", "EngineTests.ProcessWithRecurseSubdirectories.In\\Subdirectory")]
+        public void ProcessWithRecurseSubdirectories()
+        {
+            const string SOURCE = "EngineTests.ProcessWithRecurseSubdirectories.In";
+            const string DESTINATION = "EngineTests.ProcessWithRecurseSubdirectories.Out";
+
+            string[] properties = new string[] { "File Extension" };
+
+            EngineOptions options = new EngineOptions()
+            {
+                RecurseSubdirectories = true,
+                SortByMonth = true,
+                Copy = true,
+                FileExtensions = new string[] { },
+                YearFormatString = "yyyy",
+                MonthFormatString = "MM"
+            };
+
+            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            engine.Process();
+
+            Assert.IsTrue(File.Exists(DESTINATION + "\\pdf\\Test.pdf"), "File does not exist in destination.");
+
+            Assert.IsTrue(File.Exists(DESTINATION + "\\txt\\Test.txt"), "File does not exist in destination.");
         }
     }
 }

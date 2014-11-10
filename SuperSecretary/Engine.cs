@@ -68,10 +68,10 @@ namespace SuperSecretary
         public void Process()
         {
             HandlerOptions ho = new HandlerOptions();
-            ho.DateFormatString = @"\\" + Options.YearFormatString;
+            ho.DateFormatString = @"\" + Options.YearFormatString;
             if (Options.SortByMonth)
             {
-                ho.DateFormatString += @"\\" + Options.MonthFormatString;
+                ho.DateFormatString += @"\" + Options.MonthFormatString;
             }
 
             int count = 0;
@@ -88,7 +88,7 @@ namespace SuperSecretary
                     foreach (var handler in Handlers)
                     {
                         var result = handler.Do(file, ho);
-                        value += @"\\" + result.Value;
+                        value += @"\" + result.Value;
 
                         if (result.Exception != null)
                         {
@@ -112,11 +112,11 @@ namespace SuperSecretary
 
                             if (Options.Copy)
                             {
-                                File.Copy(file, file.Replace(Source, Destination + value));
+                                File.Copy(file, Destination + value + @"\" + Path.GetFileName(file));
                             }
                             else
                             {
-                                File.Move(file, file.Replace(Source, Destination + value));
+                                File.Move(file, Destination + value + @"\" + Path.GetFileName(file));
                             }
                         }
                         catch (Exception ex)
