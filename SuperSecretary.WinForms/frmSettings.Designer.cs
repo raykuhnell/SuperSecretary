@@ -29,77 +29,51 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
-            this.txtYearFormatString = new System.Windows.Forms.TextBox();
-            this.txtMonthFormatString = new System.Windows.Forms.TextBox();
             this.txtLogFilePath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSaveAndClose = new System.Windows.Forms.Button();
+            this.lblLogFolder = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
+            this.gpbLogging = new System.Windows.Forms.GroupBox();
+            this.btnChangeLogFolder = new System.Windows.Forms.Button();
+            this.chkEnableLogging = new System.Windows.Forms.CheckBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.grpDateFormat = new System.Windows.Forms.GroupBox();
+            this.lblDateFormattingHelp = new System.Windows.Forms.Label();
+            this.txtDateFormatString = new System.Windows.Forms.TextBox();
+            this.gpbLogging.SuspendLayout();
+            this.grpDateFormat.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtYearFormatString
-            // 
-            this.txtYearFormatString.Location = new System.Drawing.Point(93, 12);
-            this.txtYearFormatString.Name = "txtYearFormatString";
-            this.txtYearFormatString.Size = new System.Drawing.Size(100, 20);
-            this.txtYearFormatString.TabIndex = 0;
-            // 
-            // txtMonthFormatString
-            // 
-            this.txtMonthFormatString.Location = new System.Drawing.Point(93, 38);
-            this.txtMonthFormatString.Name = "txtMonthFormatString";
-            this.txtMonthFormatString.Size = new System.Drawing.Size(100, 20);
-            this.txtMonthFormatString.TabIndex = 1;
             // 
             // txtLogFilePath
             // 
-            this.txtLogFilePath.Location = new System.Drawing.Point(93, 64);
+            this.txtLogFilePath.Location = new System.Drawing.Point(6, 56);
             this.txtLogFilePath.Name = "txtLogFilePath";
-            this.txtLogFilePath.Size = new System.Drawing.Size(209, 20);
+            this.txtLogFilePath.Size = new System.Drawing.Size(323, 20);
             this.txtLogFilePath.TabIndex = 2;
             // 
-            // label1
+            // lblLogFolder
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Year Format:";
+            this.lblLogFolder.AutoSize = true;
+            this.lblLogFolder.Location = new System.Drawing.Point(6, 40);
+            this.lblLogFolder.Name = "lblLogFolder";
+            this.lblLogFolder.Size = new System.Drawing.Size(60, 13);
+            this.lblLogFolder.TabIndex = 5;
+            this.lblLogFolder.Text = "Log Folder:";
             // 
-            // label2
+            // btnOK
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Month Format:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Log File Path:";
-            // 
-            // btnSaveAndClose
-            // 
-            this.btnSaveAndClose.Location = new System.Drawing.Point(211, 102);
-            this.btnSaveAndClose.Name = "btnSaveAndClose";
-            this.btnSaveAndClose.Size = new System.Drawing.Size(90, 23);
-            this.btnSaveAndClose.TabIndex = 6;
-            this.btnSaveAndClose.Text = "Save and Close";
-            this.btnSaveAndClose.UseVisualStyleBackColor = true;
-            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
+            this.btnOK.Location = new System.Drawing.Point(272, 243);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 6;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(130, 102);
+            this.btnApply.Location = new System.Drawing.Point(191, 243);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 7;
@@ -107,36 +81,108 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // gpbLogging
+            // 
+            this.gpbLogging.Controls.Add(this.btnChangeLogFolder);
+            this.gpbLogging.Controls.Add(this.chkEnableLogging);
+            this.gpbLogging.Controls.Add(this.lblLogFolder);
+            this.gpbLogging.Controls.Add(this.txtLogFilePath);
+            this.gpbLogging.Location = new System.Drawing.Point(12, 150);
+            this.gpbLogging.Name = "gpbLogging";
+            this.gpbLogging.Size = new System.Drawing.Size(416, 87);
+            this.gpbLogging.TabIndex = 9;
+            this.gpbLogging.TabStop = false;
+            this.gpbLogging.Text = "Log";
+            // 
+            // btnChangeLogFolder
+            // 
+            this.btnChangeLogFolder.Location = new System.Drawing.Point(335, 54);
+            this.btnChangeLogFolder.Name = "btnChangeLogFolder";
+            this.btnChangeLogFolder.Size = new System.Drawing.Size(75, 23);
+            this.btnChangeLogFolder.TabIndex = 6;
+            this.btnChangeLogFolder.Text = "Change...";
+            this.btnChangeLogFolder.UseVisualStyleBackColor = true;
+            this.btnChangeLogFolder.Click += new System.EventHandler(this.btnChangeLogFolder_Click);
+            // 
+            // chkEnableLogging
+            // 
+            this.chkEnableLogging.AutoSize = true;
+            this.chkEnableLogging.Location = new System.Drawing.Point(7, 20);
+            this.chkEnableLogging.Name = "chkEnableLogging";
+            this.chkEnableLogging.Size = new System.Drawing.Size(100, 17);
+            this.chkEnableLogging.TabIndex = 0;
+            this.chkEnableLogging.Text = "Enable Logging";
+            this.chkEnableLogging.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(353, 243);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // grpDateFormat
+            // 
+            this.grpDateFormat.Controls.Add(this.txtDateFormatString);
+            this.grpDateFormat.Controls.Add(this.lblDateFormattingHelp);
+            this.grpDateFormat.Location = new System.Drawing.Point(12, 12);
+            this.grpDateFormat.Name = "grpDateFormat";
+            this.grpDateFormat.Size = new System.Drawing.Size(416, 132);
+            this.grpDateFormat.TabIndex = 11;
+            this.grpDateFormat.TabStop = false;
+            this.grpDateFormat.Text = "Date Formatting";
+            // 
+            // lblDateFormattingHelp
+            // 
+            this.lblDateFormattingHelp.Location = new System.Drawing.Point(9, 20);
+            this.lblDateFormattingHelp.Name = "lblDateFormattingHelp";
+            this.lblDateFormattingHelp.Size = new System.Drawing.Size(401, 83);
+            this.lblDateFormattingHelp.TabIndex = 0;
+            this.lblDateFormattingHelp.Text = resources.GetString("lblDateFormattingHelp.Text");
+            // 
+            // txtDateFormatString
+            // 
+            this.txtDateFormatString.Location = new System.Drawing.Point(7, 106);
+            this.txtDateFormatString.Name = "txtDateFormatString";
+            this.txtDateFormatString.Size = new System.Drawing.Size(403, 20);
+            this.txtDateFormatString.TabIndex = 1;
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 136);
+            this.ClientSize = new System.Drawing.Size(440, 273);
+            this.Controls.Add(this.grpDateFormat);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.gpbLogging);
             this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.btnSaveAndClose);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtLogFilePath);
-            this.Controls.Add(this.txtMonthFormatString);
-            this.Controls.Add(this.txtYearFormatString);
+            this.Controls.Add(this.btnOK);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSettings";
             this.Text = "SuperSecretary Settings";
+            this.gpbLogging.ResumeLayout(false);
+            this.gpbLogging.PerformLayout();
+            this.grpDateFormat.ResumeLayout(false);
+            this.grpDateFormat.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtYearFormatString;
-        private System.Windows.Forms.TextBox txtMonthFormatString;
         private System.Windows.Forms.TextBox txtLogFilePath;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnSaveAndClose;
+        private System.Windows.Forms.Label lblLogFolder;
+        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.GroupBox gpbLogging;
+        private System.Windows.Forms.CheckBox chkEnableLogging;
+        private System.Windows.Forms.Button btnChangeLogFolder;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.GroupBox grpDateFormat;
+        private System.Windows.Forms.Label lblDateFormattingHelp;
+        private System.Windows.Forms.TextBox txtDateFormatString;
     }
 }

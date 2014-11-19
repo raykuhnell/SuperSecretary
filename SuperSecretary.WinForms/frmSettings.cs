@@ -8,15 +8,15 @@ namespace SuperSecretary.WinForms
         public frmSettings()
         {
             InitializeComponent();
-            txtYearFormatString.Text = Settings.Default.YearFormatString;
-            txtMonthFormatString.Text = Settings.Default.MonthFormatString;
+            txtDateFormatString.Text = Settings.Default.DateFormatString;
+            chkEnableLogging.Checked = Settings.Default.EnableLogging;
             txtLogFilePath.Text = Settings.Default.LogFilePath;
         }
 
         private void Save()
         {
-            Settings.Default.YearFormatString = txtYearFormatString.Text;
-            Settings.Default.MonthFormatString = txtMonthFormatString.Text;
+            Settings.Default.DateFormatString = txtDateFormatString.Text;
+            Settings.Default.EnableLogging = chkEnableLogging.Checked;
             Settings.Default.LogFilePath = txtLogFilePath.Text;
             Settings.Default.Save();
         }
@@ -26,10 +26,18 @@ namespace SuperSecretary.WinForms
             Save();
         }
 
-        private void btnSaveAndClose_Click(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
             Save();
             this.Close();
+        }
+
+        private void btnChangeLogFolder_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtLogFilePath.Text = folderBrowserDialog.SelectedPath;
+            }
         }
     }
 }

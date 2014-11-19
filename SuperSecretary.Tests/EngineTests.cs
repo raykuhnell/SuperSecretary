@@ -54,11 +54,9 @@ namespace SuperSecretary.Tests
             EngineOptions options = new EngineOptions()
             {
                 RecurseSubdirectories = true,
-                SortByMonth = true,
                 Copy = true,
                 FileExtensions = new string[] {},
-                YearFormatString = "yyyy",
-                MonthFormatString = "MM"
+                DateFormatString = "yyyy\\MM"
             };
 
             Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
@@ -82,11 +80,9 @@ namespace SuperSecretary.Tests
             EngineOptions options = new EngineOptions()
             {
                 RecurseSubdirectories = true,
-                SortByMonth = true,
                 Copy = false,
                 FileExtensions = new string[] { },
-                YearFormatString = "yyyy",
-                MonthFormatString = "MM"
+                DateFormatString = "yyyy\\MM"
             };
 
             Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
@@ -110,11 +106,9 @@ namespace SuperSecretary.Tests
             EngineOptions options = new EngineOptions()
             {
                 RecurseSubdirectories = true,
-                SortByMonth = true,
                 Copy = true,
                 FileExtensions = new string[] { ".txt" },
-                YearFormatString = "yyyy",
-                MonthFormatString = "MM"
+                DateFormatString = "yyyy\\MM"
             };
 
             Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
@@ -138,11 +132,9 @@ namespace SuperSecretary.Tests
             EngineOptions options = new EngineOptions()
             {
                 RecurseSubdirectories = true,
-                SortByMonth = true,
                 Copy = true,
                 FileExtensions = new string[] { },
-                YearFormatString = "yyyy",
-                MonthFormatString = "MM"
+                DateFormatString = "yyyy\\MM"
             };
 
             Engine engine = new Engine(SOURCE, DESTINATION, properties, options);

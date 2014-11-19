@@ -40,9 +40,6 @@
             this.btnGo = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdoYear = new System.Windows.Forms.RadioButton();
-            this.rdoMonth = new System.Windows.Forms.RadioButton();
             this.chkSubdirectories = new System.Windows.Forms.CheckBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +56,6 @@
             this.btnScan = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.chkCopy = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,41 +149,6 @@
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Sort by:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rdoYear);
-            this.groupBox1.Controls.Add(this.rdoMonth);
-            this.groupBox1.Location = new System.Drawing.Point(248, 311);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(204, 69);
-            this.groupBox1.TabIndex = 13;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Sort Options";
-            // 
-            // rdoYear
-            // 
-            this.rdoYear.AutoSize = true;
-            this.rdoYear.Enabled = false;
-            this.rdoYear.Location = new System.Drawing.Point(7, 42);
-            this.rdoYear.Name = "rdoYear";
-            this.rdoYear.Size = new System.Drawing.Size(107, 17);
-            this.rdoYear.TabIndex = 14;
-            this.rdoYear.Text = "Sort by Year Only";
-            this.rdoYear.UseVisualStyleBackColor = true;
-            // 
-            // rdoMonth
-            // 
-            this.rdoMonth.AutoSize = true;
-            this.rdoMonth.Checked = true;
-            this.rdoMonth.Enabled = false;
-            this.rdoMonth.Location = new System.Drawing.Point(7, 19);
-            this.rdoMonth.Name = "rdoMonth";
-            this.rdoMonth.Size = new System.Drawing.Size(137, 17);
-            this.rdoMonth.TabIndex = 13;
-            this.rdoMonth.TabStop = true;
-            this.rdoMonth.Text = "Sort by Month and Year";
-            this.rdoMonth.UseVisualStyleBackColor = true;
             // 
             // chkSubdirectories
             // 
@@ -304,7 +265,7 @@
             this.clbFileTypes.FormattingEnabled = true;
             this.clbFileTypes.Location = new System.Drawing.Point(248, 170);
             this.clbFileTypes.Name = "clbFileTypes";
-            this.clbFileTypes.Size = new System.Drawing.Size(204, 109);
+            this.clbFileTypes.Size = new System.Drawing.Size(204, 184);
             this.clbFileTypes.TabIndex = 19;
             // 
             // btnScan
@@ -331,7 +292,7 @@
             this.chkCopy.AutoSize = true;
             this.chkCopy.Checked = true;
             this.chkCopy.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCopy.Location = new System.Drawing.Point(248, 286);
+            this.chkCopy.Location = new System.Drawing.Point(248, 363);
             this.chkCopy.Name = "chkCopy";
             this.chkCopy.Size = new System.Drawing.Size(191, 17);
             this.chkCopy.TabIndex = 22;
@@ -351,7 +312,6 @@
             this.Controls.Add(this.btnRemoveProperty);
             this.Controls.Add(this.lbProperties);
             this.Controls.Add(this.btnAddProperty);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chkSubdirectories);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.progressBar);
@@ -368,8 +328,6 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "frmMain";
             this.Text = "SuperSecretary";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -390,10 +348,7 @@
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkSubdirectories;
-        private System.Windows.Forms.RadioButton rdoYear;
-        private System.Windows.Forms.RadioButton rdoMonth;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ListBox lbProperties;
         private System.Windows.Forms.Button btnAddProperty;

@@ -25,54 +25,6 @@ namespace SuperSecretary.WinForms {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Ray\\Downloads\\Test Folder")]
-        public string LastSourcePath {
-            get {
-                return ((string)(this["LastSourcePath"]));
-            }
-            set {
-                this["LastSourcePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Ray\\Downloads\\Test Folder")]
-        public string LastDestinationPath {
-            get {
-                return ((string)(this["LastDestinationPath"]));
-            }
-            set {
-                this["LastDestinationPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("yyyy")]
-        public string YearFormatString {
-            get {
-                return ((string)(this["YearFormatString"]));
-            }
-            set {
-                this["YearFormatString"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MM")]
-        public string MonthFormatString {
-            get {
-                return ((string)(this["MonthFormatString"]));
-            }
-            set {
-                this["MonthFormatString"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Logs")]
         public string LogFilePath {
             get {
@@ -92,6 +44,54 @@ namespace SuperSecretary.WinForms {
             }
             set {
                 this["PluginsDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Public\\Documents")]
+        public string LastSourcePath {
+            get {
+                return ((string)(this["LastSourcePath"]));
+            }
+            set {
+                this["LastSourcePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Public\\Documents")]
+        public string LastDestinationPath {
+            get {
+                return ((string)(this["LastDestinationPath"]));
+            }
+            set {
+                this["LastDestinationPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableLogging {
+            get {
+                return ((bool)(this["EnableLogging"]));
+            }
+            set {
+                this["EnableLogging"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("yyyy\\MM")]
+        public string DateFormatString {
+            get {
+                return ((string)(this["DateFormatString"]));
+            }
+            set {
+                this["DateFormatString"] = value;
             }
         }
     }

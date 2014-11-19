@@ -78,11 +78,9 @@ namespace SuperSecretary.WinForms
 
             EngineOptions options = new EngineOptions() { 
                 RecurseSubdirectories = chkSubdirectories.Checked,
-                SortByMonth = rdoMonth.Checked,
                 Copy = chkCopy.Checked,
                 FileExtensions = clbFileTypes.CheckedItems.Cast<String>().ToArray(),
-                YearFormatString = Settings.Default.YearFormatString,
-                MonthFormatString = Settings.Default.MonthFormatString
+                DateFormatString = Settings.Default.DateFormatString
             };
             Engine engine = new Engine(source, destination, properties, options);
             engine.OnProgressUpdate += Engine_StatusUpdate;
@@ -100,7 +98,10 @@ namespace SuperSecretary.WinForms
                 MessageBox.Show("An unknown error occurred.  " + ex.Message, Application.ProductName);
             }
 
-            Log.Save(Settings.Default.LogFilePath);
+            if (Settings.Default.EnableLogging)
+            {
+                Log.Save(Settings.Default.LogFilePath);
+            }
             MessageBox.Show("Process completed!");
         }
 
@@ -155,8 +156,6 @@ namespace SuperSecretary.WinForms
                 btnAddProperty.Enabled = true;
                 btnRemoveProperty.Enabled = true;
                 clbFileTypes.Enabled = true;
-                rdoMonth.Enabled = true;
-                rdoYear.Enabled = true;
             }
             else
             {

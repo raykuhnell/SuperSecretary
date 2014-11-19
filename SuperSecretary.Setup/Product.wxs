@@ -34,6 +34,9 @@
       <Component Id="SuperSecretary.WinForms.exe"> 
 				<File Id="SuperSecretary.WinForms.exe" Source="$(var.SuperSecretary.WinForms.TargetPath)" />
 			</Component>
+      <Component Id="SuperSecretary.Console.exe"> 
+				<File Id="SuperSecretary.Console.exe" Source="$(var.SuperSecretary.Console.TargetPath)" />
+			</Component>
     </DirectoryRef>
     
     <DirectoryRef Id="PLUGINSDIR">
@@ -51,6 +54,7 @@
 		<Feature Id="ProductFeature" Title="SuperSecretary.Setup" Level="1">
 			<ComponentRef Id="SuperSecretary.dll" />
       <ComponentRef Id="SuperSecretary.WinForms.exe" />
+      <ComponentRef Id="SuperSecretary.Console.exe" />
       <ComponentRef Id="PluginsFolder"/>
       <ComponentRef Id="LogsFolder"/>
 		</Feature>

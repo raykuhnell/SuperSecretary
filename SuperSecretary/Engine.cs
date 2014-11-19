@@ -67,12 +67,7 @@ namespace SuperSecretary
 
         public void Process()
         {
-            HandlerOptions ho = new HandlerOptions();
-            ho.DateFormatString = @"\" + Options.YearFormatString;
-            if (Options.SortByMonth)
-            {
-                ho.DateFormatString += @"\" + Options.MonthFormatString;
-            }
+            HandlerOptions ho = new HandlerOptions() { DateFormatString = Options.DateFormatString };
 
             int count = 0;
             var files = Directory.GetFiles(Source, "*", Options.RecurseSubdirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);

@@ -5,9 +5,7 @@ namespace SuperSecretary
     {
         public bool RecurseSubdirectories;
         public bool Copy;
-        public bool SortByMonth;
         public string[] FileExtensions;
-        public string MonthFormatString;
-        public string YearFormatString;
+        public string DateFormatString;
     }
 }
