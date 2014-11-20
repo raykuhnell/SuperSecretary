@@ -18,7 +18,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DateFormatString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">yyyy\MM</Value>
+      <Value Profile="(Default)">yyyy\\MM</Value>
     </Setting>
   </Settings>
 </SettingsFile>

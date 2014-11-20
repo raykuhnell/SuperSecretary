@@ -121,10 +121,13 @@
     <value>17, 17</value>
   </metadata>
   <data name="lblDateFormattingHelp.Text" xml:space="preserve">
-    <value>The system can be configured to sort by any date format using the text below.  You can use any .NET date format string and the backslash character to split into subfolders.
+    <value>The system can be configured to sort by any date format using the text below.  You can use any .NET date format string and two backslash characters to split into subfolders.
 
-For example, the string "yyyy\MMMM\dd" will sort to the following path: "2011\April\02".</value>
+You can use the box below to select a common format or type your own and sample format will be displayed using today's date for you to verify.</value>
   </data>
+  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>180, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

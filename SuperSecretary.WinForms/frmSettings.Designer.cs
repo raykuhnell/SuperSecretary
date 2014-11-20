@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.txtLogFilePath = new System.Windows.Forms.TextBox();
             this.lblLogFolder = new System.Windows.Forms.Label();
@@ -40,9 +41,12 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.grpDateFormat = new System.Windows.Forms.GroupBox();
             this.lblDateFormattingHelp = new System.Windows.Forms.Label();
-            this.txtDateFormatString = new System.Windows.Forms.TextBox();
+            this.cboDateFormatString = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblDateFormatDisplay = new System.Windows.Forms.Label();
             this.gpbLogging.SuspendLayout();
             this.grpDateFormat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // txtLogFilePath
@@ -63,7 +67,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(272, 243);
+            this.btnOK.Location = new System.Drawing.Point(272, 272);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
@@ -73,7 +77,7 @@
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(191, 243);
+            this.btnApply.Location = new System.Drawing.Point(191, 272);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 7;
@@ -87,7 +91,7 @@
             this.gpbLogging.Controls.Add(this.chkEnableLogging);
             this.gpbLogging.Controls.Add(this.lblLogFolder);
             this.gpbLogging.Controls.Add(this.txtLogFilePath);
-            this.gpbLogging.Location = new System.Drawing.Point(12, 150);
+            this.gpbLogging.Location = new System.Drawing.Point(12, 179);
             this.gpbLogging.Name = "gpbLogging";
             this.gpbLogging.Size = new System.Drawing.Size(416, 87);
             this.gpbLogging.TabIndex = 9;
@@ -116,20 +120,22 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(353, 243);
+            this.btnCancel.Location = new System.Drawing.Point(353, 272);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // grpDateFormat
             // 
-            this.grpDateFormat.Controls.Add(this.txtDateFormatString);
+            this.grpDateFormat.Controls.Add(this.lblDateFormatDisplay);
+            this.grpDateFormat.Controls.Add(this.cboDateFormatString);
             this.grpDateFormat.Controls.Add(this.lblDateFormattingHelp);
             this.grpDateFormat.Location = new System.Drawing.Point(12, 12);
             this.grpDateFormat.Name = "grpDateFormat";
-            this.grpDateFormat.Size = new System.Drawing.Size(416, 132);
+            this.grpDateFormat.Size = new System.Drawing.Size(416, 161);
             this.grpDateFormat.TabIndex = 11;
             this.grpDateFormat.TabStop = false;
             this.grpDateFormat.Text = "Date Formatting";
@@ -142,18 +148,39 @@
             this.lblDateFormattingHelp.TabIndex = 0;
             this.lblDateFormattingHelp.Text = resources.GetString("lblDateFormattingHelp.Text");
             // 
-            // txtDateFormatString
+            // cboDateFormatString
             // 
-            this.txtDateFormatString.Location = new System.Drawing.Point(7, 106);
-            this.txtDateFormatString.Name = "txtDateFormatString";
-            this.txtDateFormatString.Size = new System.Drawing.Size(403, 20);
-            this.txtDateFormatString.TabIndex = 1;
+            this.cboDateFormatString.FormattingEnabled = true;
+            this.cboDateFormatString.Items.AddRange(new object[] {
+            "yyyy",
+            "yyyy\\\\MM",
+            "yyyy\\\\MMMM",
+            "yyyy\\\\MM\\\\dd",
+            "yyyy\\\\MMMM\\\\dd"});
+            this.cboDateFormatString.Location = new System.Drawing.Point(6, 131);
+            this.cboDateFormatString.Name = "cboDateFormatString";
+            this.cboDateFormatString.Size = new System.Drawing.Size(381, 21);
+            this.cboDateFormatString.TabIndex = 12;
+            this.cboDateFormatString.TextChanged += new System.EventHandler(this.cboDateFormatString_TextChanged);
+            this.cboDateFormatString.Validating += new System.ComponentModel.CancelEventHandler(this.cboDateFormatString_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // lblDateFormatDisplay
+            // 
+            this.lblDateFormatDisplay.AutoSize = true;
+            this.lblDateFormatDisplay.Location = new System.Drawing.Point(6, 115);
+            this.lblDateFormatDisplay.Name = "lblDateFormatDisplay";
+            this.lblDateFormatDisplay.Size = new System.Drawing.Size(0, 13);
+            this.lblDateFormatDisplay.TabIndex = 13;
             // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 273);
+            this.ClientSize = new System.Drawing.Size(440, 304);
             this.Controls.Add(this.grpDateFormat);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gpbLogging);
@@ -166,6 +193,7 @@
             this.gpbLogging.PerformLayout();
             this.grpDateFormat.ResumeLayout(false);
             this.grpDateFormat.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,6 +211,8 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.GroupBox grpDateFormat;
         private System.Windows.Forms.Label lblDateFormattingHelp;
-        private System.Windows.Forms.TextBox txtDateFormatString;
+        private System.Windows.Forms.ComboBox cboDateFormatString;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Label lblDateFormatDisplay;
     }
 }

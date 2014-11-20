@@ -85,7 +85,7 @@ namespace SuperSecretary.WinForms {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("yyyy\\MM")]
+        [global::System.Configuration.DefaultSettingValueAttribute("yyyy\\\\MM")]
         public string DateFormatString {
             get {
                 return ((string)(this["DateFormatString"]));
