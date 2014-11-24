@@ -83,7 +83,12 @@ namespace SuperSecretary
                     foreach (var handler in Handlers)
                     {
                         var result = handler.Do(file, ho);
-                        value += @"\" + result.Value;
+                        string folder = result.Value;
+                        if (String.IsNullOrEmpty(folder))
+                        {
+                            folder = Options.MissingFolderName;
+                        }
+                        value += @"\" + folder;
 
                         if (result.Exception != null)
                         {

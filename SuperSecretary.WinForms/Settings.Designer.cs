@@ -94,5 +94,29 @@ namespace SuperSecretary.WinForms {
                 this["DateFormatString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SkipFolder {
+            get {
+                return ((bool)(this["SkipFolder"]));
+            }
+            set {
+                this["SkipFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Unsorted")]
+        public string MissingFolderName {
+            get {
+                return ((string)(this["MissingFolderName"]));
+            }
+            set {
+                this["MissingFolderName"] = value;
+            }
+        }
     }
 }

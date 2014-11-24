@@ -37,6 +37,12 @@ namespace SuperSecretary.Handlers
 
             IHandler handler;
 
+            handler = new Id3AlbumHandler();
+            Handlers.Add(handler.Name, handler);
+
+            handler = new Id3ArtistHandler();
+            Handlers.Add(handler.Name, handler);
+
             handler = new CameraMakerHandler();
             Handlers.Add(handler.Name, handler);
 
@@ -53,7 +59,10 @@ namespace SuperSecretary.Handlers
             Handlers.Add(handler.Name, handler);
 
             handler = new FileExtensionHandler();
-            Handlers.Add(handler.Name, handler); 
+            Handlers.Add(handler.Name, handler);
+
+            handler = new Id3GenreHandler();
+            Handlers.Add(handler.Name, handler);
         }
 
         public IHandler GetByName(string name)

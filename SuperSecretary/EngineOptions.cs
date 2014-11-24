@@ -7,5 +7,6 @@ namespace SuperSecretary
         public bool Copy;
         public string[] FileExtensions;
         public string DateFormatString;
+        public string MissingFolderName;
     }
 }

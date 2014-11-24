@@ -33,6 +33,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCompany = new System.Windows.Forms.LinkLabel();
+            this.btnCheckForUpdates = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,11 +75,22 @@
             this.lblCompany.TabStop = true;
             this.lblCompany.Text = "Company";
             // 
+            // btnCheckForUpdates
+            // 
+            this.btnCheckForUpdates.Location = new System.Drawing.Point(288, 93);
+            this.btnCheckForUpdates.Name = "btnCheckForUpdates";
+            this.btnCheckForUpdates.Size = new System.Drawing.Size(104, 23);
+            this.btnCheckForUpdates.TabIndex = 5;
+            this.btnCheckForUpdates.Text = "Check for Updates";
+            this.btnCheckForUpdates.UseVisualStyleBackColor = true;
+            this.btnCheckForUpdates.Click += new System.EventHandler(this.btnCheckForUpdates_Click);
+            // 
             // frmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 128);
+            this.Controls.Add(this.btnCheckForUpdates);
             this.Controls.Add(this.lblCompany);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblVersion);
@@ -98,5 +110,6 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel lblCompany;
+        private System.Windows.Forms.Button btnCheckForUpdates;
     }
 }

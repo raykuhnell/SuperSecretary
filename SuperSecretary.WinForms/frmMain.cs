@@ -80,7 +80,8 @@ namespace SuperSecretary.WinForms
                 RecurseSubdirectories = chkSubdirectories.Checked,
                 Copy = chkCopy.Checked,
                 FileExtensions = clbFileTypes.CheckedItems.Cast<String>().ToArray(),
-                DateFormatString = Settings.Default.DateFormatString
+                DateFormatString = Settings.Default.DateFormatString,
+                MissingFolderName = Settings.Default.MissingFolderName
             };
             Engine engine = new Engine(source, destination, properties, options);
             engine.OnProgressUpdate += Engine_StatusUpdate;

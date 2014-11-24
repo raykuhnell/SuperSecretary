@@ -49,6 +49,14 @@ namespace SuperSecretary.Console
                             options.FileExtensions = args[i].Split(',');
                         }
                     }
+                    if (args[i] == "-u" || args[i] == "--unsorted")
+                    {
+                        i++;
+                        if (i < args.Length)
+                        {
+                            options.MissingFolderName = args[i];
+                        }
+                    }
                 }
 
                 Engine engine = new Engine(source, destination, properties, options);
@@ -80,6 +88,7 @@ namespace SuperSecretary.Console
             System.Console.WriteLine("  -r, --recurse                       Recurse to all subdirectories.");
             System.Console.WriteLine("  -m, --move                          Move files to destination.  Omitting this option copies the files.");
             System.Console.WriteLine("  -e, --extensions file-exts          A comma-separated list of file extensions to sort.  (ex. .jpg,.gif,.png)");
+            System.Console.WriteLine("  -u, --unsorted folder               The folder to sort to when an attribute value is not found.");
             System.Console.WriteLine("  -h, --help                          Show the help message.");
         }
     }

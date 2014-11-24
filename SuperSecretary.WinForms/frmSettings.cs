@@ -11,6 +11,9 @@ namespace SuperSecretary.WinForms
             cboDateFormatString.Text = Settings.Default.DateFormatString;
             chkEnableLogging.Checked = Settings.Default.EnableLogging;
             txtLogFilePath.Text = Settings.Default.LogFilePath;
+            rdoSkipFolder.Checked = Settings.Default.SkipFolder;
+            txtMissingFolderName.Enabled = !Settings.Default.SkipFolder;
+            txtMissingFolderName.Text = Settings.Default.MissingFolderName;
         }
 
         private void Save()
@@ -18,6 +21,8 @@ namespace SuperSecretary.WinForms
             Settings.Default.DateFormatString = cboDateFormatString.Text;
             Settings.Default.EnableLogging = chkEnableLogging.Checked;
             Settings.Default.LogFilePath = txtLogFilePath.Text;
+            Settings.Default.SkipFolder = rdoSkipFolder.Checked;
+            Settings.Default.MissingFolderName = txtMissingFolderName.Text;
             Settings.Default.Save();
         }
 
@@ -63,13 +68,18 @@ namespace SuperSecretary.WinForms
             }
             catch (Exception ex)
             {
-
+                lblDateFormatDisplay.Text = "Incorrect format selected!";
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void rdoSkipFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMissingFolderName.Enabled = !rdoSkipFolder.Checked;
         }
     }
 }

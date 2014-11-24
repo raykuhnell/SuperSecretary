@@ -20,5 +20,11 @@
     <Setting Name="DateFormatString" Type="System.String" Scope="User">
       <Value Profile="(Default)">yyyy\\MM</Value>
     </Setting>
+    <Setting Name="SkipFolder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MissingFolderName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Unsorted</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
