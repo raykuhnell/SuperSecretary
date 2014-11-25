@@ -110,13 +110,17 @@ namespace SuperSecretary
                                 Directory.CreateDirectory(Destination + value);
                             }
 
-                            if (Options.Copy)
+                            string destinationFile = Destination + value + @"\" + Path.GetFileName(file);
+                            if (!File.Exists(destinationFile) || Options.OverwriteExistingFiles)
                             {
-                                File.Copy(file, Destination + value + @"\" + Path.GetFileName(file));
-                            }
-                            else
-                            {
-                                File.Move(file, Destination + value + @"\" + Path.GetFileName(file));
+                                if (Options.Copy)
+                                {
+                                    File.Copy(file, destinationFile);
+                                }
+                                else
+                                {
+                                    File.Move(file, destinationFile);
+                                }
                             }
                         }
                         catch (Exception ex)

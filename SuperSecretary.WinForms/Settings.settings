@@ -26,5 +26,8 @@
     <Setting Name="MissingFolderName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Unsorted</Value>
     </Setting>
+    <Setting Name="OverwriteExistingFiles" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

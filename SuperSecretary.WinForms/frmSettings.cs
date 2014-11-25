@@ -14,6 +14,7 @@ namespace SuperSecretary.WinForms
             rdoSkipFolder.Checked = Settings.Default.SkipFolder;
             txtMissingFolderName.Enabled = !Settings.Default.SkipFolder;
             txtMissingFolderName.Text = Settings.Default.MissingFolderName;
+            rdoOverwriteFile.Checked = Settings.Default.OverwriteExistingFiles;
         }
 
         private void Save()
@@ -23,6 +24,7 @@ namespace SuperSecretary.WinForms
             Settings.Default.LogFilePath = txtLogFilePath.Text;
             Settings.Default.SkipFolder = rdoSkipFolder.Checked;
             Settings.Default.MissingFolderName = txtMissingFolderName.Text;
+            Settings.Default.OverwriteExistingFiles = rdoOverwriteFile.Checked;
             Settings.Default.Save();
         }
 

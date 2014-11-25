@@ -8,5 +8,6 @@ namespace SuperSecretary
         public string[] FileExtensions;
         public string DateFormatString;
         public string MissingFolderName;
+        public bool OverwriteExistingFiles;
     }
 }

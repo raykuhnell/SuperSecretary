@@ -118,5 +118,17 @@ namespace SuperSecretary.WinForms {
                 this["MissingFolderName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OverwriteExistingFiles {
+            get {
+                return ((bool)(this["OverwriteExistingFiles"]));
+            }
+            set {
+                this["OverwriteExistingFiles"] = value;
+            }
+        }
     }
 }

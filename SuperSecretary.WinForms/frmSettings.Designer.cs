@@ -44,15 +44,22 @@
             this.cboDateFormatString = new System.Windows.Forms.ComboBox();
             this.lblDateFormattingHelp = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.gpbAttributes = new System.Windows.Forms.GroupBox();
-            this.rdoSkipFolder = new System.Windows.Forms.RadioButton();
-            this.rdoUseDefaultFolder = new System.Windows.Forms.RadioButton();
-            this.txtMissingFolderName = new System.Windows.Forms.TextBox();
+            this.gpbOptions = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtMissingFolderName = new System.Windows.Forms.TextBox();
+            this.rdoUseDefaultFolder = new System.Windows.Forms.RadioButton();
+            this.rdoSkipFolder = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnlMissingFolderOptions = new System.Windows.Forms.Panel();
+            this.pnlFileExistsOptions = new System.Windows.Forms.Panel();
+            this.rdoSkipFile = new System.Windows.Forms.RadioButton();
+            this.rdoOverwriteFile = new System.Windows.Forms.RadioButton();
             this.gpbLogging.SuspendLayout();
             this.grpDateFormat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            this.gpbAttributes.SuspendLayout();
+            this.gpbOptions.SuspendLayout();
+            this.pnlMissingFolderOptions.SuspendLayout();
+            this.pnlFileExistsOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtLogFilePath
@@ -73,7 +80,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(310, 369);
+            this.btnOK.Location = new System.Drawing.Point(310, 418);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
@@ -83,7 +90,7 @@
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(229, 369);
+            this.btnApply.Location = new System.Drawing.Point(229, 418);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 7;
@@ -97,7 +104,7 @@
             this.gpbLogging.Controls.Add(this.chkEnableLogging);
             this.gpbLogging.Controls.Add(this.lblLogFolder);
             this.gpbLogging.Controls.Add(this.txtLogFilePath);
-            this.gpbLogging.Location = new System.Drawing.Point(12, 276);
+            this.gpbLogging.Location = new System.Drawing.Point(12, 325);
             this.gpbLogging.Name = "gpbLogging";
             this.gpbLogging.Size = new System.Drawing.Size(460, 87);
             this.gpbLogging.TabIndex = 9;
@@ -126,7 +133,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(391, 369);
+            this.btnCancel.Location = new System.Drawing.Point(391, 418);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 10;
@@ -182,48 +189,19 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // gpbAttributes
+            // gpbOptions
             // 
-            this.gpbAttributes.Controls.Add(this.label1);
-            this.gpbAttributes.Controls.Add(this.txtMissingFolderName);
-            this.gpbAttributes.Controls.Add(this.rdoUseDefaultFolder);
-            this.gpbAttributes.Controls.Add(this.rdoSkipFolder);
-            this.gpbAttributes.Location = new System.Drawing.Point(12, 180);
-            this.gpbAttributes.Name = "gpbAttributes";
-            this.gpbAttributes.Size = new System.Drawing.Size(460, 90);
-            this.gpbAttributes.TabIndex = 12;
-            this.gpbAttributes.TabStop = false;
-            this.gpbAttributes.Text = "Missing Attribute Options";
-            // 
-            // rdoSkipFolder
-            // 
-            this.rdoSkipFolder.AutoSize = true;
-            this.rdoSkipFolder.Location = new System.Drawing.Point(6, 36);
-            this.rdoSkipFolder.Name = "rdoSkipFolder";
-            this.rdoSkipFolder.Size = new System.Drawing.Size(78, 17);
-            this.rdoSkipFolder.TabIndex = 0;
-            this.rdoSkipFolder.TabStop = true;
-            this.rdoSkipFolder.Text = "Skip Folder";
-            this.rdoSkipFolder.UseVisualStyleBackColor = true;
-            this.rdoSkipFolder.CheckedChanged += new System.EventHandler(this.rdoSkipFolder_CheckedChanged);
-            // 
-            // rdoUseDefaultFolder
-            // 
-            this.rdoUseDefaultFolder.AutoSize = true;
-            this.rdoUseDefaultFolder.Location = new System.Drawing.Point(91, 36);
-            this.rdoUseDefaultFolder.Name = "rdoUseDefaultFolder";
-            this.rdoUseDefaultFolder.Size = new System.Drawing.Size(147, 17);
-            this.rdoUseDefaultFolder.TabIndex = 1;
-            this.rdoUseDefaultFolder.TabStop = true;
-            this.rdoUseDefaultFolder.Text = "Use Default Folder Name:";
-            this.rdoUseDefaultFolder.UseVisualStyleBackColor = true;
-            // 
-            // txtMissingFolderName
-            // 
-            this.txtMissingFolderName.Location = new System.Drawing.Point(91, 59);
-            this.txtMissingFolderName.Name = "txtMissingFolderName";
-            this.txtMissingFolderName.Size = new System.Drawing.Size(342, 20);
-            this.txtMissingFolderName.TabIndex = 2;
+            this.gpbOptions.Controls.Add(this.pnlFileExistsOptions);
+            this.gpbOptions.Controls.Add(this.pnlMissingFolderOptions);
+            this.gpbOptions.Controls.Add(this.label2);
+            this.gpbOptions.Controls.Add(this.label1);
+            this.gpbOptions.Controls.Add(this.txtMissingFolderName);
+            this.gpbOptions.Location = new System.Drawing.Point(12, 180);
+            this.gpbOptions.Name = "gpbOptions";
+            this.gpbOptions.Size = new System.Drawing.Size(460, 139);
+            this.gpbOptions.TabIndex = 12;
+            this.gpbOptions.TabStop = false;
+            this.gpbOptions.Text = "Sort Options";
             // 
             // label1
             // 
@@ -234,12 +212,91 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "When a file does not have an attribute value defined (i.e. no Date taken):";
             // 
+            // txtMissingFolderName
+            // 
+            this.txtMissingFolderName.Location = new System.Drawing.Point(92, 66);
+            this.txtMissingFolderName.Name = "txtMissingFolderName";
+            this.txtMissingFolderName.Size = new System.Drawing.Size(342, 20);
+            this.txtMissingFolderName.TabIndex = 2;
+            // 
+            // rdoUseDefaultFolder
+            // 
+            this.rdoUseDefaultFolder.AutoSize = true;
+            this.rdoUseDefaultFolder.Location = new System.Drawing.Point(87, 3);
+            this.rdoUseDefaultFolder.Name = "rdoUseDefaultFolder";
+            this.rdoUseDefaultFolder.Size = new System.Drawing.Size(147, 17);
+            this.rdoUseDefaultFolder.TabIndex = 1;
+            this.rdoUseDefaultFolder.TabStop = true;
+            this.rdoUseDefaultFolder.Text = "Use Default Folder Name:";
+            this.rdoUseDefaultFolder.UseVisualStyleBackColor = true;
+            // 
+            // rdoSkipFolder
+            // 
+            this.rdoSkipFolder.AutoSize = true;
+            this.rdoSkipFolder.Location = new System.Drawing.Point(3, 3);
+            this.rdoSkipFolder.Name = "rdoSkipFolder";
+            this.rdoSkipFolder.Size = new System.Drawing.Size(78, 17);
+            this.rdoSkipFolder.TabIndex = 0;
+            this.rdoSkipFolder.TabStop = true;
+            this.rdoSkipFolder.Text = "Skip Folder";
+            this.rdoSkipFolder.UseVisualStyleBackColor = true;
+            this.rdoSkipFolder.CheckedChanged += new System.EventHandler(this.rdoSkipFolder_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(213, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "When a file already exists in the destination:";
+            // 
+            // pnlMissingFolderOptions
+            // 
+            this.pnlMissingFolderOptions.Controls.Add(this.rdoSkipFolder);
+            this.pnlMissingFolderOptions.Controls.Add(this.rdoUseDefaultFolder);
+            this.pnlMissingFolderOptions.Location = new System.Drawing.Point(7, 36);
+            this.pnlMissingFolderOptions.Name = "pnlMissingFolderOptions";
+            this.pnlMissingFolderOptions.Size = new System.Drawing.Size(235, 24);
+            this.pnlMissingFolderOptions.TabIndex = 5;
+            // 
+            // pnlFileExistsOptions
+            // 
+            this.pnlFileExistsOptions.Controls.Add(this.rdoOverwriteFile);
+            this.pnlFileExistsOptions.Controls.Add(this.rdoSkipFile);
+            this.pnlFileExistsOptions.Location = new System.Drawing.Point(7, 106);
+            this.pnlFileExistsOptions.Name = "pnlFileExistsOptions";
+            this.pnlFileExistsOptions.Size = new System.Drawing.Size(167, 23);
+            this.pnlFileExistsOptions.TabIndex = 6;
+            // 
+            // rdoSkipFile
+            // 
+            this.rdoSkipFile.AutoSize = true;
+            this.rdoSkipFile.Location = new System.Drawing.Point(2, 3);
+            this.rdoSkipFile.Name = "rdoSkipFile";
+            this.rdoSkipFile.Size = new System.Drawing.Size(65, 17);
+            this.rdoSkipFile.TabIndex = 0;
+            this.rdoSkipFile.TabStop = true;
+            this.rdoSkipFile.Text = "Skip File";
+            this.rdoSkipFile.UseVisualStyleBackColor = true;
+            // 
+            // rdoOverwriteFile
+            // 
+            this.rdoOverwriteFile.AutoSize = true;
+            this.rdoOverwriteFile.Location = new System.Drawing.Point(73, 3);
+            this.rdoOverwriteFile.Name = "rdoOverwriteFile";
+            this.rdoOverwriteFile.Size = new System.Drawing.Size(89, 17);
+            this.rdoOverwriteFile.TabIndex = 1;
+            this.rdoOverwriteFile.TabStop = true;
+            this.rdoOverwriteFile.Text = "Overwrite File";
+            this.rdoOverwriteFile.UseVisualStyleBackColor = true;
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 401);
-            this.Controls.Add(this.gpbAttributes);
+            this.ClientSize = new System.Drawing.Size(484, 450);
+            this.Controls.Add(this.gpbOptions);
             this.Controls.Add(this.grpDateFormat);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gpbLogging);
@@ -253,8 +310,12 @@
             this.grpDateFormat.ResumeLayout(false);
             this.grpDateFormat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.gpbAttributes.ResumeLayout(false);
-            this.gpbAttributes.PerformLayout();
+            this.gpbOptions.ResumeLayout(false);
+            this.gpbOptions.PerformLayout();
+            this.pnlMissingFolderOptions.ResumeLayout(false);
+            this.pnlMissingFolderOptions.PerformLayout();
+            this.pnlFileExistsOptions.ResumeLayout(false);
+            this.pnlFileExistsOptions.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -275,10 +336,15 @@
         private System.Windows.Forms.ComboBox cboDateFormatString;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Label lblDateFormatDisplay;
-        private System.Windows.Forms.GroupBox gpbAttributes;
+        private System.Windows.Forms.GroupBox gpbOptions;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMissingFolderName;
         private System.Windows.Forms.RadioButton rdoUseDefaultFolder;
         private System.Windows.Forms.RadioButton rdoSkipFolder;
+        private System.Windows.Forms.Panel pnlFileExistsOptions;
+        private System.Windows.Forms.RadioButton rdoOverwriteFile;
+        private System.Windows.Forms.RadioButton rdoSkipFile;
+        private System.Windows.Forms.Panel pnlMissingFolderOptions;
+        private System.Windows.Forms.Label label2;
     }
 }

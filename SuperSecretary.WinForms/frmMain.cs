@@ -81,7 +81,8 @@ namespace SuperSecretary.WinForms
                 Copy = chkCopy.Checked,
                 FileExtensions = clbFileTypes.CheckedItems.Cast<String>().ToArray(),
                 DateFormatString = Settings.Default.DateFormatString,
-                MissingFolderName = Settings.Default.MissingFolderName
+                MissingFolderName = Settings.Default.MissingFolderName,
+                OverwriteExistingFiles = Settings.Default.OverwriteExistingFiles
             };
             Engine engine = new Engine(source, destination, properties, options);
             engine.OnProgressUpdate += Engine_StatusUpdate;
