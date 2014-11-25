@@ -7,6 +7,7 @@ namespace SuperSecretary
         public bool Copy;
         public string[] FileExtensions;
         public string DateFormatString;
+        public bool SkipFolder;
         public string MissingFolderName;
         public bool OverwriteExistingFiles;
     }

@@ -20,7 +20,7 @@ namespace SuperSecretary
         public Engine(string source, string destination, string[] properties, EngineOptions options)
         {
             this.Source = source;
-            this.Destination = destination;
+            this.Destination = String.IsNullOrEmpty(destination) ? source : destination;
             this.Options = options;
 
             Handlers = new List<IHandler>();
@@ -83,56 +83,45 @@ namespace SuperSecretary
                     foreach (var handler in Handlers)
                     {
                         var result = handler.Do(file, ho);
-                        string folder = result.Value;
-                        if (String.IsNullOrEmpty(folder))
+                        if (String.IsNullOrEmpty(result.Value) && Options.SkipFolder)
                         {
-                            folder = Options.MissingFolderName;
+                            value = Path.Combine(value, Options.MissingFolderName);
                         }
-                        value += @"\" + folder;
-
+                        else
+                        {
+                            value = Path.Combine(value, result.Value);
+                        }
                         if (result.Exception != null)
                         {
                             status += String.Format("An error occurred retrieving {0} : {1}", handler.Name, result.Exception.Message);
                         }
                     }
+                    status += String.Format("Organizing file {0} of {1}.", count, files.Length);
 
-                    if (!String.IsNullOrEmpty(value))
+                    try
                     {
-                        if (String.IsNullOrEmpty(Destination))
+                        string destinationDirectory = Path.Combine(Destination, value);
+                        if (!Directory.Exists(destinationDirectory))
                         {
-                            Destination = Source;
+                            Directory.CreateDirectory(destinationDirectory);
                         }
 
-                        try
+                        string destinationFile = Path.Combine(destinationDirectory, Path.GetFileName(file));
+                        if (!File.Exists(destinationFile) || Options.OverwriteExistingFiles)
                         {
-                            if (!Directory.Exists(Destination + value))
+                            if (Options.Copy)
                             {
-                                Directory.CreateDirectory(Destination + value);
+                                File.Copy(file, destinationFile);
                             }
-
-                            string destinationFile = Destination + value + @"\" + Path.GetFileName(file);
-                            if (!File.Exists(destinationFile) || Options.OverwriteExistingFiles)
+                            else
                             {
-                                if (Options.Copy)
-                                {
-                                    File.Copy(file, destinationFile);
-                                }
-                                else
-                                {
-                                    File.Move(file, destinationFile);
-                                }
+                                File.Move(file, destinationFile);
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            status += String.Format("An error occurred while trying to sort the file: {0}.  {1}", file, ex.Message);
-                        }
-                        
-                        status += String.Format("Organizing file {0} of {1}.", count, files.Length);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        status = String.Format("Skipped file {0}.  File could not be sorted.", file);
+                        status += String.Format("An error occurred while trying to sort the file: {0}.  {1}", file, ex.Message);
                     }
                 }
                 else
