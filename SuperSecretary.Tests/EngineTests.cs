@@ -144,5 +144,53 @@ namespace SuperSecretary.Tests
 
             Assert.IsTrue(File.Exists(DESTINATION + "\\txt\\Test.txt"), "File does not exist in destination.");
         }
+
+        [TestMethod]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ProcessWithMissingFolderName.In")]
+        public void ProcessWithMissingFolderName()
+        {
+            const string SOURCE = "EngineTests.ProcessWithMissingFolderName.In";
+            const string DESTINATION = "EngineTests.ProcessWithMissingFolderName.Out";
+
+            string[] properties = new string[] { "Date Taken" };
+
+            EngineOptions options = new EngineOptions()
+            {
+                RecurseSubdirectories = true,
+                Copy = true,
+                FileExtensions = new string[] { },
+                SkipFolder = false,
+                MissingFolderName = "Unsorted"
+            };
+
+            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            engine.Process();
+
+            Assert.IsTrue(File.Exists(DESTINATION + "\\Unsorted\\Test.txt"), "File does not exist in destination.");
+        }
+
+        [TestMethod]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ProcessWithSkipFolder.In")]
+        public void ProcessWithSkipFolder()
+        {
+            const string SOURCE = "EngineTests.ProcessWithSkipFolder.In";
+            const string DESTINATION = "EngineTests.ProcessWithSkipFolder.Out";
+
+            string[] properties = new string[] { "Date Taken" };
+
+            EngineOptions options = new EngineOptions()
+            {
+                RecurseSubdirectories = true,
+                Copy = true,
+                FileExtensions = new string[] { },
+                DateFormatString = "yyyy\\MM",
+                SkipFolder = true
+            };
+
+            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            engine.Process();
+
+            Assert.IsTrue(File.Exists(DESTINATION + "\\Test.txt"), "File does not exist in destination.");
+        }
     }
 }

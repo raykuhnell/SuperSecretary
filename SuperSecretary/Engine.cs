@@ -83,11 +83,11 @@ namespace SuperSecretary
                     foreach (var handler in Handlers)
                     {
                         var result = handler.Do(file, ho);
-                        if (String.IsNullOrEmpty(result.Value) && Options.SkipFolder)
+                        if (String.IsNullOrEmpty(result.Value) && !Options.SkipFolder)
                         {
                             value = Path.Combine(value, Options.MissingFolderName);
                         }
-                        else
+                        else if (!String.IsNullOrEmpty(result.Value))
                         {
                             value = Path.Combine(value, result.Value);
                         }

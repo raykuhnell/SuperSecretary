@@ -5,14 +5,14 @@ using SuperSecretary.Handlers;
 namespace SuperSecretary.Tests
 {
     [TestClass]
-    public class CameraMakerHandlerTests
+    public class Id3AlbumHandlerTests
     {
         IHandler handler;
 
         [TestInitialize()]
         public void Initialize()
         {
-            handler = new CameraMakerHandler();
+            handler = new Id3AlbumHandler();
         }
 
         [TestMethod]
@@ -22,11 +22,11 @@ namespace SuperSecretary.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("Files\\JPGWithEXIFData.jpg", "EXIFTests")]
+        [DeploymentItem("Files\\Test.mp3", "Id3Tests")]
         public void TestReturnValue()
         {
-            var result = handler.Do("EXIFTests\\JPGWithEXIFData.jpg", new HandlerOptions());
-            Assert.AreEqual("Test Camera Maker", result.Value, "Wrong value was returned.");
+            var result = handler.Do("Id3Tests\\Test.mp3", new HandlerOptions());
+            Assert.AreEqual("Test Album", result.Value, "Wrong value was returned.");
         }
     }
 }

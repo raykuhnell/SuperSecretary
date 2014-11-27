@@ -11,7 +11,7 @@ namespace SuperSecretary.Utilities
         public static Tag GetTags(string fileName)
         {
             var f = File.Create(fileName);
-            return f.GetTag(TagTypes.AllTags);
+            return f.GetTag(TagTypes.Id3v2);
         }
     }
 }
