@@ -37,6 +37,12 @@
       <Component Id="SuperSecretary.Console.exe"> 
 				<File Id="SuperSecretary.Console.exe" Source="$(var.SuperSecretary.Console.TargetPath)" />
 			</Component>
+      <Component Id="taglib-sharp.dll">
+        <File Id="taglib-sharp.dll" Source="$(var.SuperSecretary.WinForms.TargetDir)taglib-sharp.dll" />
+      </Component>
+      <Component Id="README.txt">
+        <File Id="README.txt" Source="$(var.SuperSecretary.Console.TargetDir)\README.txt" />
+      </Component>
     </DirectoryRef>
     
     <DirectoryRef Id="PLUGINSDIR">
@@ -55,6 +61,8 @@
 			<ComponentRef Id="SuperSecretary.dll" />
       <ComponentRef Id="SuperSecretary.WinForms.exe" />
       <ComponentRef Id="SuperSecretary.Console.exe" />
+      <ComponentRef Id="taglib-sharp.dll" />
+      <ComponentRef Id="README.txt" />
       <ComponentRef Id="PluginsFolder"/>
       <ComponentRef Id="LogsFolder"/>
 		</Feature>

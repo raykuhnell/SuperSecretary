@@ -192,5 +192,32 @@ namespace SuperSecretary.Tests
 
             Assert.IsTrue(File.Exists(DESTINATION + "\\Test.txt"), "File does not exist in destination.");
         }
+
+        [TestMethod]
+        [DeploymentItem("Files\\Test.txt", "EngineTests.ProcessWithOverwriteExistingFiles.In")]
+        [DeploymentItem("Files\\Existing\\Test.txt", "EngineTests.ProcessWithOverwriteExistingFiles.Out\\txt")]
+        public void ProcessWithOverwriteExistingFiles()
+        {
+            const string SOURCE = "EngineTests.ProcessWithOverwriteExistingFiles.In";
+            const string DESTINATION = "EngineTests.ProcessWithOverwriteExistingFiles.Out";
+
+            string[] properties = new string[] { "File Extension" };
+
+            EngineOptions options = new EngineOptions()
+            {
+                RecurseSubdirectories = true,
+                Copy = true,
+                FileExtensions = new string[] { },
+                DateFormatString = "yyyy\\MM",
+                OverwriteExistingFiles = true
+            };
+
+            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            engine.Process();
+
+            string text = File.ReadAllText(DESTINATION + "\\txt\\Test.txt");
+
+            Assert.IsTrue(String.IsNullOrEmpty(text), "Existing file was not overwritten.");
+        }
     }
 }
