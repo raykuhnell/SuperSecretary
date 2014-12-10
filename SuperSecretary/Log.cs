@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SuperSecretary
 {
-    static class Log
+    public static class Log
     {
         private static StringBuilder sb;
 

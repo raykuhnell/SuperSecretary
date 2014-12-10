@@ -86,7 +86,7 @@ namespace SuperSecretary.WinForms
                 OverwriteExistingFiles = Settings.Default.OverwriteExistingFiles
             };
             Engine engine = new Engine(source, destination, properties, options);
-            engine.OnProgressUpdate += Engine_StatusUpdate;
+            engine.OnProgressUpdate += Engine_ProgressUpdate;
 
             try
             {
@@ -108,7 +108,7 @@ namespace SuperSecretary.WinForms
             MessageBox.Show("Process completed!");
         }
 
-        private void Engine_StatusUpdate(object sender, ProgressEventArgs e)
+        private void Engine_ProgressUpdate(object sender, ProgressEventArgs e)
         {
             Log.Write(e.Status);
             progressBar.Maximum = e.Total;
