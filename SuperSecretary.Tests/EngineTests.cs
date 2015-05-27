@@ -53,13 +53,16 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = true,
                 FileExtensions = new string[] {},
                 DateFormatString = "yyyy\\MM"
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             Assert.IsTrue(File.Exists(DESTINATION + "\\txt\\Test.txt"), "File does not exist in destination.");
@@ -79,13 +82,16 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = false,
                 FileExtensions = new string[] { },
                 DateFormatString = "yyyy\\MM"
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             Assert.IsFalse(File.Exists(SOURCE + "\\txt\\Test.txt"), "File should have moved to destination.");
@@ -105,13 +111,16 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = true,
                 FileExtensions = new string[] { ".txt" },
                 DateFormatString = "yyyy\\MM"
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             Assert.IsFalse(File.Exists(DESTINATION + "\\pdf\\Test.pdf"), "File should should not exist in destination.");
@@ -131,13 +140,16 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = true,
                 FileExtensions = new string[] { },
                 DateFormatString = "yyyy\\MM"
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             Assert.IsTrue(File.Exists(DESTINATION + "\\pdf\\Test.pdf"), "File does not exist in destination.");
@@ -156,6 +168,9 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = true,
                 FileExtensions = new string[] { },
@@ -163,7 +178,7 @@ namespace SuperSecretary.Tests
                 MissingFolderName = "Unsorted"
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             Assert.IsTrue(File.Exists(DESTINATION + "\\Unsorted\\Test.txt"), "File does not exist in destination.");
@@ -180,6 +195,9 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = true,
                 FileExtensions = new string[] { },
@@ -187,7 +205,7 @@ namespace SuperSecretary.Tests
                 SkipFolder = true
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             Assert.IsTrue(File.Exists(DESTINATION + "\\Test.txt"), "File does not exist in destination.");
@@ -205,6 +223,9 @@ namespace SuperSecretary.Tests
 
             EngineOptions options = new EngineOptions()
             {
+                Source = SOURCE,
+                Destination = DESTINATION,
+                Properties = properties,
                 RecurseSubdirectories = true,
                 Copy = true,
                 FileExtensions = new string[] { },
@@ -212,7 +233,7 @@ namespace SuperSecretary.Tests
                 OverwriteExistingFiles = true
             };
 
-            Engine engine = new Engine(SOURCE, DESTINATION, properties, options);
+            Engine engine = new Engine(options);
             engine.Process();
 
             string text = File.ReadAllText(DESTINATION + "\\txt\\Test.txt");

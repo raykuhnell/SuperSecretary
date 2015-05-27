@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows.Forms;
 using SuperSecretary;
-using SuperSecretary.Events;
 using SuperSecretary.Handlers;
 using System.IO;
 
@@ -52,6 +51,8 @@ namespace SuperSecretary.WinForms
 
         private void btnGo_Click(object sender, EventArgs e)
         {
+            btnGo.Enabled = false;
+
             string source = txtSource.Text;
             string destination = txtDestination.Text;
 
@@ -76,7 +77,10 @@ namespace SuperSecretary.WinForms
             Settings.Default.LastDestinationPath = destination;
             Settings.Default.Save();
 
-            EngineOptions options = new EngineOptions() { 
+            EngineOptions options = new EngineOptions() {
+                Source = source,
+                Destination = destination,
+                Properties = properties,
                 RecurseSubdirectories = chkSubdirectories.Checked,
                 Copy = chkCopy.Checked,
                 FileExtensions = clbFileTypes.CheckedItems.Cast<String>().ToArray(),
@@ -85,34 +89,8 @@ namespace SuperSecretary.WinForms
                 MissingFolderName = Settings.Default.MissingFolderName,
                 OverwriteExistingFiles = Settings.Default.OverwriteExistingFiles
             };
-            Engine engine = new Engine(source, destination, properties, options);
-            engine.OnProgressUpdate += Engine_ProgressUpdate;
 
-            try
-            {
-                engine.Process();                
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                MessageBox.Show("An error occurred trying to access files.  " + ex.Message, Application.ProductName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An unknown error occurred.  " + ex.Message, Application.ProductName);
-            }
-
-            if (Settings.Default.EnableLogging)
-            {
-                Log.Save(Settings.Default.LogFilePath);
-            }
-            MessageBox.Show("Process completed!");
-        }
-
-        private void Engine_ProgressUpdate(object sender, ProgressEventArgs e)
-        {
-            Log.Write(e.Status);
-            progressBar.Maximum = e.Total;
-            progressBar.PerformStep();
+            backgroundWorker.RunWorkerAsync(options);
         }
 
         private void RefreshPreview()
@@ -179,6 +157,40 @@ namespace SuperSecretary.WinForms
                 lbProperties.Items.Remove(lbProperties.SelectedItems[i]);
             }
             RefreshPreview();
+        }
+
+        private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Engine engine = new Engine((EngineOptions)e.Argument);
+            engine.OnProgressUpdate += backgroundWorker.ReportProgress;
+
+            try
+            {
+                engine.Process();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show("An error occurred trying to access files.  " + ex.Message, Application.ProductName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error occurred.  " + ex.Message, Application.ProductName);
+            }
+
+            if (Settings.Default.EnableLogging)
+            {
+                Log.Save(Settings.Default.LogFilePath);
+            }
+
+            MessageBox.Show("Process completed!");
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            Log.Write(e.UserState.ToString());
+            progressBar.Minimum = 0;
+            progressBar.Maximum = 100;
+            progressBar.Value = e.ProgressPercentage;
         }
     }
 }

@@ -9,8 +9,8 @@ namespace SuperSecretary.Updates
 {
     public class Updater
     {
-        const string UPDATE_URL = "http://razium.com/products/supersecretary/updates.xml";
-        const string SITE_URL = "http://razium.com/products/supersecretary";
+        const string UPDATE_URL = "http://codecalculated.com/products/supersecretary/updates.xml";
+        const string SITE_URL = "http://codecalculated.com/products/supersecretary";
 
         public Update Latest;
 

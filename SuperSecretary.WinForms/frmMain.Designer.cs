@@ -56,6 +56,7 @@
             this.btnScan = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.chkCopy = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -299,6 +300,12 @@
             this.chkCopy.Text = "Copy and leave source files intact?";
             this.chkCopy.UseVisualStyleBackColor = true;
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,6 +371,7 @@
         private System.Windows.Forms.Button btnScan;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkCopy;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
 

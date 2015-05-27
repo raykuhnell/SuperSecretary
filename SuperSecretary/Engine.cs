@@ -1,5 +1,4 @@
-﻿using SuperSecretary.Events;
-using SuperSecretary.Handlers;
+﻿using SuperSecretary.Handlers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,18 +13,18 @@ namespace SuperSecretary
         public EngineOptions Options { get; set; }
         public List<IHandler> Handlers;
 
-        public delegate void ProgressUpdateHandler(object sender, ProgressEventArgs e);
+        public delegate void ProgressUpdateHandler(int percentProgress, object userState);
         public event ProgressUpdateHandler OnProgressUpdate;
 
-        public Engine(string source, string destination, string[] properties, EngineOptions options)
+        public Engine(EngineOptions options)
         {
-            this.Source = source;
-            this.Destination = String.IsNullOrEmpty(destination) ? source : destination;
+            this.Source = options.Source;
+            this.Destination = String.IsNullOrEmpty(options.Destination) ? options.Source : options.Destination;
             this.Options = options;
 
             Handlers = new List<IHandler>();
 
-            foreach (string prop in properties)
+            foreach (string prop in options.Properties)
             {
                 var hm = HandlerManager.Instance;
                 var handler = hm.GetByName(prop);
@@ -129,10 +128,9 @@ namespace SuperSecretary
                     status = String.Format("Skipped file {0}.  File is not on the list of selected extensions.", file);
                 }
 
-                ProgressEventArgs args = new ProgressEventArgs(status, count, files.Length);
                 if (OnProgressUpdate != null)
                 {
-                    OnProgressUpdate(this, args);
+                    OnProgressUpdate((int)Math.Round((double)(100 * count) / files.Length), status);
                 }
             }
         }

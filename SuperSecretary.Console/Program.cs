@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SuperSecretary;
-using SuperSecretary.Events;
 
 namespace SuperSecretary.Console
 {
@@ -19,10 +18,10 @@ namespace SuperSecretary.Console
 
             if (args.Length > 1)
             {
-                string source = args[0];
-                string destination = args[1];
                 string[] properties = new string[] { };
                 EngineOptions options = new EngineOptions();
+                options.Source = args[0];
+                options.Destination = args[1];
 
                 string logFilePath = String.Empty;
 
@@ -78,7 +77,8 @@ namespace SuperSecretary.Console
                     }
                 }
 
-                Engine engine = new Engine(source, destination, properties, options);
+                options.Properties = properties;
+                Engine engine = new Engine(options);
                 engine.OnProgressUpdate += Engine_ProgressUpdate;
 
                 try
@@ -103,10 +103,10 @@ namespace SuperSecretary.Console
             }
         }
 
-        private static void Engine_ProgressUpdate(object sender, ProgressEventArgs e)
+        private static void Engine_ProgressUpdate(int progressPercentage, object userState)
         {
-            System.Console.WriteLine(e.Status);
-            Log.Write(e.Status);
+            System.Console.WriteLine(userState.ToString());
+            Log.Write(userState.ToString());
         }
 
         static void ShowHelp()

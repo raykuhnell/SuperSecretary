@@ -1,6 +1,6 @@
 ﻿SuperSecretary
 Version 2.0
-http://www.razium.com
+http://www.codecalculated.com
 
 CONTENTS
 --------
@@ -10,7 +10,7 @@ CONTENTS
 
 1. Description
 --------------
-SuperSecretary is an application for sorting files into folders according to file properties or attributes.  It is provided as a console application to be run from the command line or used as an automated task.  More information can be found at http://www.razium.com.
+SuperSecretary is an application for sorting files into folders according to file properties or attributes.  It is provided as a console application to be run from the command line or used as an automated task.  More information can be found at http://www.codecalculated.com.
 
 2. Usage
 --------
